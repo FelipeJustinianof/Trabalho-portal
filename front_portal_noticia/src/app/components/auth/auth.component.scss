@@ -1,0 +1,48 @@
+.login-content {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: auto;
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    border-radius: 12px;
+
+    .acessar-content {
+        margin-left: 38%;
+        background-color: #6b7ada;
+        box-shadow: 0 6px 12px rgba(82, 99, 214, 0.5);
+        border-radius: 15px;
+    }
+}
+
+.form-login {
+    text-align: center;
+    margin-left: 12;
+    align-items: start;
+    justify-content: start;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.example-container>* {
+    width: 95%;
+}
+
+
+
+.senha-content {
+    margin-left: 30%;
+}
+
+.space {
+    padding: 20px;
+}

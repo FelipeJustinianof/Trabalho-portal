@@ -1,0 +1,62 @@
+<mat-card class="noticia-content">
+    <mat-card-content>
+        <mat-card-title class="form-noticia">Crie sua notícia</mat-card-title>
+    </mat-card-content>
+
+    <div class="noticia-container">
+        <form [formGroup]="form">
+            <mat-form-field appearance="outline">
+                <mat-label>Título da notícia</mat-label>
+                <textarea matInput cdkTextareaAutosize formControlName="titulo"></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Descrição</mat-label>
+                <textarea matInput cdkTextareaAutosize formControlName="descricao"></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Data publicação</mat-label>
+                <input matInput type="date" formControlName="dataPub" />
+                <mat-error *ngIf="form.get('dataPub')?.hasError('data_pub')">
+                    {{ getErrorMessage() }}
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Categoria</mat-label>
+                <select matNativeControl formControlName="categoriaId">
+                    <option value="" [ngValue]="null">Selecione a categoria</option>
+                    <option *ngFor="let categoria of categorias" [ngValue]="categoria.id">
+                        {{ categoria.descricao }}
+                    </option>
+                </select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" *ngIf="subCategoriasFiltradas.length > 0">
+                <mat-label>Subcategoria</mat-label>
+                <select matNativeControl formControlName="subCategoria">
+                    <option [ngValue]="null">Selecione a subcategoria</option>
+                    <option *ngFor="let sub of subCategoriasFiltradas" [ngValue]="sub.id">
+                        {{ sub.descricao }}
+                    </option>
+                </select>
+            </mat-form-field>
+
+            <div class="file-upload-container">
+                <label class="file-upload-label">Selecione uma imagem</label>
+                <input id="fileInput" type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
+                <button mat-raised-button color="primary" type="button" (click)="triggerFileInput()">
+                    Escolher arquivo
+                </button>
+                <span class="file-name">{{ selectedFileName || 'Nenhum arquivo selecionado' }}</span>
+            </div>
+        </form>
+    </div>
+
+    <div>
+        <a mat-button class="cadastro-content" (click)="cadastrar()">Cadastrar notícia</a>
+    </div>
+</mat-card>
+
+<router-outlet></router-outlet>

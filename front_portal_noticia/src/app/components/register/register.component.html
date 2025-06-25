@@ -1,0 +1,56 @@
+<mat-card class="cadastro-content">
+    <mat-card-title class="form-cadastro">Cadastre-se</mat-card-title>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Digite seu nome" formControlName="nome" required />
+            <mat-error *ngIf="nome.hasError('required')">Nome é obrigatório</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Digite seu email" formControlName="email" required />
+            <mat-error *ngIf="email.hasError('required')">Email é obrigatório</mat-error>
+            <mat-error *ngIf="email.hasError('email')">Email inválido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput placeholder="Digite sua senha" formControlName="senha" [type]="hide ? 'password' : 'text'"
+                required />
+            <mat-icon matSuffix (click)="hide = !hide">{{
+                hide ? 'visibility' : 'visibility_off'
+                }}</mat-icon>
+            <mat-error *ngIf="senha.hasError('required')">Senha é obrigatória</mat-error>
+            <mat-error *ngIf="senha.hasError('pattern')">
+                A senha deve conter ao menos 8 caracteres, incluindo uma letra maiúscula,
+                minúscula, número e caractere especial
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Confirme sua senha</mat-label>
+            <input matInput placeholder="Confirme sua senha" [formControl]="repetirSenha"
+                [type]="hide ? 'password' : 'text'" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility' : 'visibility_off' }}</mat-icon>
+
+            <mat-error *ngIf="repetirSenha.hasError('required')">
+                Confirmação obrigatória
+            </mat-error>
+            <mat-error *ngIf="form.hasError('confirmarSenha') && repetirSenha.touched">
+                As senhas não coincidem
+            </mat-error>
+        </mat-form-field>
+        <div>
+            <mat-checkbox formControlName="autor">Quero ser autor e criar notícias</mat-checkbox>
+        </div>
+
+        <div>
+            <button mat-raised-button color="primary" type="submit" class="cadastrar-content">
+                Cadastrar
+            </button>
+        </div>
+    </form>
+</mat-card>
+
+<router-outlet></router-outlet>

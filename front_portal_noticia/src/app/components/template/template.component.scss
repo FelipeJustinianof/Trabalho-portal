@@ -1,0 +1,76 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Toolbar */
+mat-toolbar {
+  background-color: white;
+  color: black;
+
+  a.mat-button,
+  button.mat-icon-button,
+  span,
+  mat-icon {
+    color: black;
+  }
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Layout do conteúdo */
+.main-content {
+  flex: 1;
+  padding: 24px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  min-height: calc(100vh - 64px); // ajustável conforme altura real da toolbar
+}
+
+/* Links */
+a {
+  text-decoration: none;
+}
+
+/* Toolbar row */
+mat-toolbar-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+}
+
+/* Espaçamento */
+.spacer {
+  flex: 1 1 auto;
+}
+
+section a.mat-button {
+  color: black;
+  margin-right: 10px;
+  text-transform: none;
+}
+
+button {
+  margin-right: 15px;
+}
+
+span {
+  margin-right: 15px;
+}
+
+/* Login section */
+.login-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

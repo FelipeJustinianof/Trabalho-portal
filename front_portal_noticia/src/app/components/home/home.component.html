@@ -1,0 +1,28 @@
+<div class="container" *ngIf="!carregando && categorias.length > 0">
+  <div class="categorias-grid">
+    <div class="categoria-card" *ngFor="let categoria of categorias">
+      <h2>{{ categoria.descricao }}</h2>
+
+      <ng-container *ngIf="noticiasPorCategoria[categoria.id]?.length; else semNoticias">
+        <mat-grid-list cols="1" rowHeight="400px" gutterSize="8px">
+          <mat-grid-tile *ngFor="let noticia of noticiasPorCategoria[categoria.id]" class="tile-background">
+            <mat-card class="noticia-card no-shadow no-padding" (click)="onNoticia(noticia)">
+              <div class="imagem-container" *ngIf="noticia.imagemUrl">
+                <img [src]="noticia.imagemUrl" alt="{{ noticia.titulo }}">
+                <div class="titulo-limpo">{{ noticia.titulo }}</div>
+              </div>
+              <mat-card-content class="conteudo-limpo">
+                <small><strong>Data:</strong> {{ noticia.dataPublicacao | date: 'dd/MM/yyyy' }}</small>
+              </mat-card-content>
+            </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </ng-container>
+
+      <ng-template #semNoticias>
+        <p><em>Nenhuma notícia nesta categoria.</em></p>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

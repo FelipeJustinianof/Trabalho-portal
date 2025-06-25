@@ -1,0 +1,17 @@
+<div *ngIf="carregando" class="loading-container">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+<div *ngIf="!carregando && noticia">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{ noticia.titulo }}</mat-card-title>
+            <mat-card-subtitle>
+                {{ noticia.dataPublicacao | date:'dd/MM/yyyy' }}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image *ngIf="noticia.imagemUrl" [src]="noticia.imagemUrl" [alt]="noticia.titulo">
+        <mat-card-content>
+            <p>{{ noticia.descricao }}</p>
+        </mat-card-content>
+    </mat-card>
+</div>

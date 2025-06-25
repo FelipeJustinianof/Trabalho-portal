@@ -1,0 +1,40 @@
+<mat-card class="categoria-content">
+    <mat-card-content>
+        <mat-card-title class="form-categoria">Criar categoria</mat-card-title>
+    </mat-card-content>
+
+    <div class="categoria-container">
+        <form [formGroup]="form">
+            <mat-form-field appearance="outline">
+                <mat-label>Nome da Categoria</mat-label>
+                <input matInput formControlName="descricao">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Categoria relacionada</mat-label>
+                <mat-select formControlName="categoriaPai" (selectionChange)="carregarSubcategorias($event)">
+                    <mat-option [value]="null">Selecione a categoria</mat-option>
+                    <mat-option *ngFor="let categoria of categoriasPai" [value]="categoria.id">
+                        {{ categoria.descricao }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" *ngIf="subCategoriasFiltradas.length > 0">
+                <mat-label>SubCategoria</mat-label>
+                <mat-select formControlName="subCategoria">
+                    <mat-option [value]="null">Selecione a subcategoria</mat-option>
+                    <mat-option *ngFor="let sub of subCategoriasFiltradas" [value]="sub.id">
+                        {{ sub.descricao }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div>
+        <a mat-button class="cadastro-content" (click)="onSubmit()">Cadastrar categoria</a>
+    </div>
+</mat-card>
+
+<router-outlet></router-outlet>

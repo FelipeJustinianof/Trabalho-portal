@@ -1,0 +1,41 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span class="spacer"></span>
+        <a routerLink="/home"><span class="titulo">Portal Noticia</span></a>
+        <section class="categorias" *ngFor="let categoria of categoriasPrincipais">
+            <a mat-button [routerLink]="['/categoria', categoria.id]">
+                {{ categoria.descricao }}
+            </a>
+        </section>
+        <span class="spacer"></span>
+        <section class="login-section">
+            <a mat-button routerLink="/login" *ngIf="!logged">Login<mat-icon>lock_person</mat-icon></a>
+            <a mat-button routerLink="/cadastro" *ngIf="!logged">Cadastrar<mat-icon>person</mat-icon></a>
+
+            <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="logged">
+                <mat-icon>person</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item *ngIf="autor" routerLink="/noticia/criar">
+                    <mat-icon>newspaper</mat-icon>
+                    <span>Criar Noticia</span>
+                </button>
+                <button mat-menu-item *ngIf="autor" routerLink="/categoria/criar">
+                    <mat-icon>category</mat-icon>
+                    <span>Criar Categoria</span>
+                </button>
+                <button mat-menu-item *ngIf="autor">
+                    <mat-icon>settings</mat-icon>
+                    <span>Configurações</span>
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>logout</mat-icon>
+                    <span>Sair</span>
+                </button>
+            </mat-menu>
+        </section>
+    </mat-toolbar-row>
+</mat-toolbar>
+<main class="main-content">
+    <router-outlet></router-outlet>
+</main>

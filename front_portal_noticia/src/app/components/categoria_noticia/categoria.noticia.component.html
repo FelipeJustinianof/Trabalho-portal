@@ -1,0 +1,11 @@
+<div class="noticias-container">
+    <div class="noticia-card" *ngFor="let noticia of noticias" (click)="verNoticia(noticia)">
+        <div class="imagem-wrapper">
+            <img [src]="noticia.imagemUrl" [alt]="noticia.titulo" />
+            <div class="titulo-overlay">{{ noticia.titulo }}</div>
+        </div>
+        <div class="data-publicacao">
+            Publicado em: {{ noticia.dataPublicacao | date:'dd/MM/yyyy' }}
+        </div>
+    </div>
+</div>
